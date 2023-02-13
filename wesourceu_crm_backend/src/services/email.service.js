@@ -55,9 +55,21 @@ If you did not create an account, then ignore this email.`;
   await sendEmail(to, subject, text);
 };
 
+const contactEnquiry = async (body) => {
+  const subject = 'Contact Enquiry';
+  const text = `
+  Name: ${body.name} 
+  Phone: ${body.phone}
+  Email: ${body.email}
+  Message: ${body.message} `;
+  const to = 'tarunjajoria21@gmail.com,bhavyesach@gmail.com';
+  await sendEmail(to, subject, text);
+};
+
 module.exports = {
   transport,
   sendEmail,
   sendResetPasswordEmail,
   sendVerificationEmail,
+  contactEnquiry,
 };
