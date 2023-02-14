@@ -17,13 +17,32 @@ const newPost = async (blog) => {
   return Blogs.create(blog);
 };
 
-const deleteEmail = async (email) => {
-  const user = await Newsletter.find({ email: email });
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+const blogEdit = async (id, blog) => {
+  let filter = { _id: id };
+  let updateValues = {
+    headline: blog.headline,
+    tags: blog.tags,
+    subtitle1: blog.subtitle1,
+    imageMainBanner: blog.imageMainBanner,
+    text1: blog.text1,
+    image1: blog.image1,
+    image2: blog.image2,
+    image3: blog.image3,
+    image4: blog.image4,
+    subtitle2: blog.subtitle2,
+    text2: blog.text2,
+  };
+  let blogUpdated = await Blogs.findOneAndUpdate(filter, updateValues, { new: true });
+  return blogUpdated;
+};
+
+const deleteEmail = async (id) => {
+  const blog = await Blogs.find({ _id: id });
+  if (!blog) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Blog not found!');
   }
-  await Newsletter.deleteOne({ email: email });
-  return user;
+  await Blogs.deleteOne({ _id: id });
+  return blog;
 };
 
 module.exports = {
@@ -31,4 +50,5 @@ module.exports = {
   allBlogs,
   deleteEmail,
   newPost,
+  blogEdit,
 };
