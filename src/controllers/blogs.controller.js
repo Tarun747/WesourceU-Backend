@@ -27,10 +27,16 @@ const deleteBlog = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(deleteBlog);
 });
 
+const blogPost = catchAsync(async (req, res) => {
+  const blogPost = await blogsService.blogPost(req.params.id);
+  res.status(httpStatus.CREATED).send(blogPost);
+});
+
 module.exports = {
   latestBlog,
   allBlogPost,
   blogsPost,
   blogEdit,
   deleteBlog,
+  blogPost,
 };

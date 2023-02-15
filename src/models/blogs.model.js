@@ -5,6 +5,7 @@ const blogsSchema = mongoose.Schema(
   {
     dateOfPosting: {
       type: Date,
+      default: Date.now,
     },
     headline: {
       type: String,
@@ -37,6 +38,9 @@ const blogsSchema = mongoose.Schema(
       type: String,
     },
     text2: {
+      type: String,
+    },
+    text3: {
       type: String,
     },
   },

@@ -13,6 +13,7 @@ const blogPost = {
     image4: Joi.string().required(),
     subtitle2: Joi.string().required(),
     text2: Joi.string().required(),
+    text3: Joi.string().required(),
   }),
 };
 

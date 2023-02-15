@@ -4,7 +4,12 @@ const { Blogs } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const latestBlogs = async () => {
-  let blogs = await Blogs.find().sort({ $natural: -1 }).limit(3);
+  let blogs = await Blogs.find().limit(3);
+  return blogs;
+};
+
+const blogPost = async (id) => {
+  let blogs = await Blogs.findById({ _id: id });
   return blogs;
 };
 
@@ -51,4 +56,5 @@ module.exports = {
   deleteEmail,
   newPost,
   blogEdit,
+  blogPost,
 };
